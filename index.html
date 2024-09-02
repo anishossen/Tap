@@ -12,40 +12,37 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: #87CEFA;
             font-family: Arial, sans-serif;
         }
 
         #gameArea {
             width: 300px;
             height: 400px;
-            background-color: #fff;
+            background-color: #FFF;
             border: 2px solid #333;
             border-radius: 10px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         #tapButton {
-            width: 100px;
-            height: 100px;
-            background-color: #3498db;
+            width: 80px;
+            height: 80px;
+            background-color: #FF4500;
             color: #fff;
-            font-size: 20px;
+            font-size: 18px;
             border: none;
             border-radius: 50%;
             position: absolute;
             left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
             cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.2s ease;
+            /* transition: background-color 0.2s ease; */
         }
 
         #tapButton:hover {
-            background-color: #2980b9;
+            background-color: #FF6347;
         }
 
         #score {
@@ -61,6 +58,7 @@
 </head>
 
 <body>
+
     <div id="gameArea">
         <div id="score">Score: 0</div>
         <button id="tapButton">Tap!</button>
@@ -72,12 +70,7 @@
         const tapButton = document.getElementById('tapButton');
         const scoreDisplay = document.getElementById('score');
 
-        // Function to handle button tap
-        function handleTap() {
-            score++;
-            scoreDisplay.textContent = 'Score: ' + score;
-
-            // Move the button to a random position
+        function randomPosition() {
             const gameArea = document.getElementById('gameArea');
             const maxX = gameArea.clientWidth - tapButton.clientWidth;
             const maxY = gameArea.clientHeight - tapButton.clientHeight;
@@ -88,8 +81,18 @@
             tapButton.style.top = randomY + 'px';
         }
 
+        function handleTap() {
+            score++;
+            scoreDisplay.textContent = 'Score: ' + score;
+            randomPosition();
+        }
+
         tapButton.addEventListener('click', handleTap);
+
+        // Initialize the button position
+        randomPosition();
     </script>
+
 </body>
 
 </html>
