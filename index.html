@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap Tap Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        #gameArea {
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #tapButton {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            color: #fff;
+            font-size: 20px;
+            border: none;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.2s ease;
+        }
+
+        #tapButton:hover {
+            background-color: #2980b9;
+        }
+
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="gameArea">
+        <div id="score">Score: 0</div>
+        <button id="tapButton">Tap!</button>
+    </div>
+
+    <script>
+        let score = 0;
+
+        const tapButton = document.getElementById('tapButton');
+        const scoreDisplay = document.getElementById('score');
+
+        // Function to handle button tap
+        function handleTap() {
+            score++;
+            scoreDisplay.textContent = 'Score: ' + score;
+
+            // Move the button to a random position
+            const gameArea = document.getElementById('gameArea');
+            const maxX = gameArea.clientWidth - tapButton.clientWidth;
+            const maxY = gameArea.clientHeight - tapButton.clientHeight;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            tapButton.style.left = randomX + 'px';
+            tapButton.style.top = randomY + 'px';
+        }
+
+        tapButton.addEventListener('click', handleTap);
+    </script>
+</body>
+
+</html>
